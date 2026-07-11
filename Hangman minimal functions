@@ -1,0 +1,118 @@
+import random
+import string
+words = ["abble" , "orange" , "banana"]
+random_word = random.choice(words)
+
+print("\n\n\n\n",random_word)
+user_choice = []
+display=["_"] * len(random_word)
+count = 6
+litter_from_user = []
+
+hang_man_ascii=[
+'''
+ +---+
+ |   |
+     |
+     |
+     |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+     |
+     |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+ |   |
+     |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+/|   |
+     |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+/|\  |
+     |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+/|\  |
+/    |
+     |
+=========
+''',
+
+'''
+ +---+
+ |   |
+ O   |
+/|\  |
+/ \  |
+     |
+=========
+'''
+]
+
+
+
+
+while  (count != 0) and ("_" in display) : 
+ user_choice = input("\n\nEnter a Litter : ").lower()
+ if user_choice in string.ascii_letters:
+
+   if user_choice not in litter_from_user:
+     litter_from_user.append(user_choice)
+   
+     for x in range(len(random_word)):
+      if user_choice ==  random_word[x]:
+        display[x] = random_word[x]
+      
+     if user_choice in random_word:
+      print(display)
+      print (f"\nyou have { count } Times To Try")
+       
+     if user_choice not in random_word:
+      count-=1
+      
+      if count == 0 :
+          print( hang_man_ascii[-(count+1)] , "You've been hanged, my friend ^_~ ")
+      else:
+       print (f"{hang_man_ascii[-(count+1)]}\nyou have { count } Times To Try (Wrong letter! You lost one life) ")
+     
+     if display == list(random_word):
+      print("You win !!\nThe word is : " , " ".join(display) , "\n" )
+   else:
+    print ("You already Try That one , Try Another litter")
+ 
+ else:
+  print("Bruuh , i say litter ... LITTER Try again")
+ 
+
