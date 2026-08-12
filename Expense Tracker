@@ -1,0 +1,45 @@
+class Expense_Tracking():
+ List_Catefory = ["Food" , "Transportation" , "Bills" , "Entertainment"]
+ history = []
+ def Add_Expense(self):
+        
+    #إدخال المبلغ 
+    while True:
+     try:
+       self.Amount = float(input("Enter The Amount")) 
+       if self.Amount < 0: 
+         print("Wrong value (Must positive) , Try again")
+       else: break
+      
+     except : print("Must number , Try again")   
+    # إدخال التصنيغ
+    self.Category = input(f"Chosse one of {Expense_Tracking.List_Catefory} Or Add new one : ").capitalize()   
+    if self.Category not in Expense_Tracking.List_Catefory: Expense_Tracking.List_Catefory.append(self.Category)
+              
+    #إدخال التاريخ
+    while True: 
+     try:
+      year = int(input("enter the year: "))
+      month = int(input("enter the month: "))
+      day= int(input("enter the day: "))
+      break
+     except:
+       print("must number bro , try again")     
+    self.Date = f"{year}/{month}/{day}"          
+     #إدخال الملاحظات
+    self.Note = input("Enter note if you want(Enter to skip)") 
+    if not self.Note: self.Note = "Empty"     
+
+    Expense = {"Amount" : self.Amount
+              ,"Category" :self.Category
+              ,"Date" : self.Date
+              ,"Note" : self.Note }
+    Expense_Tracking.history.append(Expense)
+ def Desplay_Expense(self )   :
+  for user in Expense_Tracking.history:
+     print(user["Amount"])
+     print(user["Category"])
+     print(user["Date"])
+     print(user["Note"])
+     print('_'*20)
+ 
