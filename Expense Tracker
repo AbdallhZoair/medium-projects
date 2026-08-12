@@ -1,45 +1,107 @@
-class Expense_Tracking():
- List_Catefory = ["Food" , "Transportation" , "Bills" , "Entertainment"]
- history = []
- def Add_Expense(self):
-        
-    #إدخال المبلغ 
-    while True:
-     try:
-       self.Amount = float(input("Enter The Amount")) 
-       if self.Amount < 0: 
-         print("Wrong value (Must positive) , Try again")
-       else: break
-      
-     except : print("Must number , Try again")   
-    # إدخال التصنيغ
-    self.Category = input(f"Chosse one of {Expense_Tracking.List_Catefory} Or Add new one : ").capitalize()   
-    if self.Category not in Expense_Tracking.List_Catefory: Expense_Tracking.List_Catefory.append(self.Category)
-              
-    #إدخال التاريخ
-    while True: 
-     try:
-      year = int(input("enter the year: "))
-      month = int(input("enter the month: "))
-      day= int(input("enter the day: "))
-      break
-     except:
-       print("must number bro , try again")     
-    self.Date = f"{year}/{month}/{day}"          
-     #إدخال الملاحظات
-    self.Note = input("Enter note if you want(Enter to skip)") 
-    if not self.Note: self.Note = "Empty"     
+import os
 
-    Expense = {"Amount" : self.Amount
-              ,"Category" :self.Category
-              ,"Date" : self.Date
-              ,"Note" : self.Note }
-    Expense_Tracking.history.append(Expense)
- def Desplay_Expense(self )   :
-  for user in Expense_Tracking.history:
-     print(user["Amount"])
-     print(user["Category"])
-     print(user["Date"])
-     print(user["Note"])
-     print('_'*20)
- 
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+class Expense_Tracking:
+    List_Catefory = ["Food", "Transportation", "Bills", "Entertainment"]
+    history = []
+
+    def Add_Expense(self):
+
+        # إدخال المبلغ
+        while True:
+            try:
+                self.Amount = float(input("Enter The Amount: "))
+                if self.Amount < 0:
+                    print("Wrong value (Must positive) , Try again: ")
+                else:
+                    break
+
+            except:
+                print("Must number , Try again: ")
+        # إدخال التصنيغ
+        self.Category = input(
+            f"Chosse one of {Expense_Tracking.List_Catefory} Or Add new one : "
+        ).capitalize()
+        if self.Category not in Expense_Tracking.List_Catefory:
+            Expense_Tracking.List_Catefory.append(self.Category)
+
+        # إدخال التاريخ
+        while True:
+            try:
+                year = int(input("enter the year: "))
+                month = int(input("enter the month: "))
+                day = int(input("enter the day: "))
+                break
+            except:
+                print("must number bro , try again: ")
+        self.Date = f"{year}/{month}/{day}"
+        # إدخال الملاحظات
+        self.Note = input("Enter note if you want(Enter to skip): ")
+        if not self.Note:
+            self.Note = "Empty"
+
+        Expense = {
+            "Amount": self.Amount,
+            "Category": self.Category,
+            "Date": self.Date,
+            "Note": self.Note,
+        }
+        Expense_Tracking.history.append(Expense)
+
+    def Desplay_Expense(self):
+        for user in Expense_Tracking.history:
+            print(user["Amount"])
+            print(user["Category"])
+            print(user["Date"])
+            print(user["Note"])
+            print("_" * 20)
+
+    def Search(self ):
+        search = []
+        clear_screen()
+        print("""\nSearch by: \n
+                  1. Amount
+                  2. Category
+                  3. Date\n""")
+
+        search_choice = input("Enter your choice: ")
+        if not Expense_Tracking.history: print("Thier is no Expense yet...")
+        else:
+           if search_choice == '1':
+            search_Amount = float(input("Enter the Amount to search: "))
+          
+            for x in Expense_Tracking.history:
+              if search_Amount == x["Amount"]:
+                search.append(x)
+           
+           elif search_choice == '2':
+            search_Category = input("Enter the Caregory to search: ").capitalize()
+            
+            for x in Expense_Tracking.history:
+             if search_Category == x["Category"]:
+               search.append(x)
+            
+           elif search_choice == '3':
+            search_Date = input("Enter the Date to search: ")
+           
+            for x in Expense_Tracking.history:
+             if search_Date == x["Date"]:
+               search.append(x)
+          
+           else:
+             print("Wrong value , try again")           
+           if search:
+             for item in search:
+              print(f"Amount is {item["Amount"]}")
+              print(f"Category is {item["Category"]}")
+              print(f"Date is {item["Date"]}")
+              print(f"Note{item["Note"]}")
+              print("_" * 20)
+           else:
+            print("No matching expense found.")
+
+
