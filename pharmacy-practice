@@ -1,0 +1,68 @@
+Medications = [{"Name":"Panadol", "Price":100.0 ,"Amount": 5 }]
+sallary = [{"Name":"Panadol", "Price":100.0 ,"Amount": 0 }]
+while True:
+  while True:
+   try:
+    User_Chooce = int(input("""
+             1- View Medications
+             2- Add New Medications
+             3- Buy New Medications
+             4- Exit 
+    """))
+    break
+   except:
+    print("you must but int") 
+  
+  if User_Chooce == 1 :
+   for i in range(len(Medications)):
+     print (f"""The Medication number{i} info is: 
+              Name :{Medications[i]["Name"]} 
+              Price : {Medications[i]["Price"]}
+              Amount : {Medications[i]["Amount"]}""")
+      
+   for i in range(len(sallary)):
+     print (f"""\nThe sallary number{i} info is: 
+              Name :{sallary[i]["Name"]} 
+              Price : {sallary[i]["Price"]}
+              Amount : {sallary[i]["Amount"]}""")
+  if User_Chooce == 2 :
+    while True:
+     try:
+      Medications.append({"Name": input("Enter the name").capitalize() , 
+                         "Price" : float(input("Enter The Price")) ,
+                         "Amount" : int(input("Enter The Amount")) })
+      break
+     except:
+      print("you must but number in Price and Amount")
+  
+  if User_Chooce == 3 :
+   while True:
+     try:
+      Salary_Name = input("What Medication do you want (Entar the Name)").capitalize()
+      Salary_Amount = int(input("How many do you want (Entar the Amount)"))
+      break
+     except:
+      print("you must enter number in Amount , Try again")
+
+   for Medication in Medications:
+    if  Salary_Name == Medication["Name"] :
+     if Salary_Amount <= Medication["Amount"]:
+      Medication["Amount"] -= Salary_Amount
+
+      for sale in sallary:
+        if sale["Name"] == Medication["Name"]:
+          sale["Amount"] += Salary_Amount
+          break
+      else :
+         sallary.append({"Name" : Medication["Name"] ,"Price":Medication["Price"] , "Amount" :Salary_Amount})
+
+     else :
+      print(f"We have only {Medication["Amount"]}")
+     break
+   else:
+     print("The Medications It was not found ")
+  
+  if User_Chooce == 4:
+   print ("Thank you for using this app ^_^ ")
+   break
+   
