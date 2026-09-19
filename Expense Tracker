@@ -1,24 +1,11 @@
 class Expense:
+    History = []
     def __init__(self, amount, category, date):
         self.amount = amount
         self.category = category
         self.date = date
 
-
-expense = []
-
-while True:
-    try:
-        user_choose = int(input("""What Do You Want: 
-            1- Add a Expense
-            2- View All Expense
-            3- Exit\n: """))
-        
-    except:
-        print("You Must Enter a Number")
-        continue
-
-    if user_choose == 1:
+    def add_Expense(self, amount, category, date):
         while True:
             try:
                 amount = int(input("Enter The amount : "))
@@ -31,25 +18,17 @@ while True:
             if category in ["Food", "Fun", "study", "Travel"]:
                 break
             else:
-                print(
-                    "You Must Choose One Of This (Food, Fun, study, Travel) \nTry Again"
-                )
-                continue
-
+                print("You Must Choose One Of This (Food, Fun, study, Travel) \nTry Again")
+                
         date = input("Enter The Date :  ")
 
         e1 = Expense(amount, category, date)
-        expense.append(e1)
+        self.History.append(e1)
 
-    elif user_choose == 2:
-        for e in range(len(expense)):
-            print(f"The Amount of Expense Number({e}) : {expense[e].amount}")
-            print(f"The Category of Expense Number({e}) : {expense[e].category}")
-            print(f"The Date of Expense Number({e}) : {expense[e].date}")
-
-
-    elif user_choose == 3:
-        print("Thank You To Use This App :)")
-        break
-    else:
-        print("Please Choose 1, 2, or 3")
+    def display(self):
+        for e in range(len(self.History)):
+            print(f"The Amount is :{self.History[e].amount}")
+            print(f"The Catedory is :{self.History[e].category}")
+            print(f"The Date is :{self.History[e].date}")
+            print("--------------------------")
+    
