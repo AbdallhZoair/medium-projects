@@ -4,7 +4,7 @@ This is where ideas go once they stop being a quick sketch and start needing an 
 
 Think of it as the step between "I had an idea" and "I had an idea and it fought back a little."
 
-🗂️How this is organized
+🗂️ How this is organized
 
 Every project gets its own folder. Every folder has one job and does it properly this time. Naming follows snake_case — same rule as always, still free, still no excuse to skip it.
 
