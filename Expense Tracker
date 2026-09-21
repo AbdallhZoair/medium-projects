@@ -1,4 +1,4 @@
-class Expense:
+class Expense :
     History = []
     def __init__(self, amount, category, date):
         self.amount = amount
