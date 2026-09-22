@@ -30,5 +30,5 @@ class Expense :
             print(f"The Amount is :{self.History[e].amount}")
             print(f"The Catedory is :{self.History[e].category}")
             print(f"The Date is :{self.History[e].date}")
-            print("--------------------------")
+            print("---------------")
     
